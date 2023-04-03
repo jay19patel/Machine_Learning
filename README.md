@@ -42,107 +42,84 @@ Used for classification tasks where the output variable is categorical.
             Image segmentation
         It is used by the Amazon in its recommendation system to provide the recommendations as per the past search of products. Netflix also uses this technique to recommend the movies and web-series to its users as per the watch history.
 
+## LabelEncoder  For Covert Labeling into Numbers 
 
-# modules available in scikit-learn:
+ - User for labeling a datas like:
+ 
+```python
 
-- sklearn.cluster: 
-    Clustering algorithms such as K-Means, DBSCAN, and Spectral Clustering.
+#    company           job           degree   
 
-- sklearn.compose: 
-    Tools for combining and transforming features.
+# 0  google      sales executive  bachelors                      
+# 1  google      sales executive    masters                      
+# 3  google     business manager    masters                     
+# 4  google  computer programmer  bachelors 
 
-- sklearn.covariance:
-    Estimation of covariance matrices.
 
-- sklearn.cross_decomposition: 
-    Cross decomposition methods such as PLS, CCA, and CPCA.
 
-- sklearn.datasets: 
-    A collection of toy datasets.
+from sklearn.preprocessing import LabelEncoder 
 
-- sklearn.decomposition: 
-    Matrix factorization techniques such as PCA, NMF, and ICA.
+x_company = LabelEncoder()
+x_job = LabelEncoder() 
+x_degree = LabelEncoder()
 
-- sklearn.discriminant_analysis:
-    Linear and Quadratic Discriminant Analysis.
+data_x['x_company']=x_company.fit_transform(data_x['company'])
+data_x['x_job']=x_company.fit_transform(data_x['job'])
+data_x['x_degree']=x_company.fit_transform(data_x['degree'])
 
-- sklearn.ensemble: 
-    Ensemble methods such as Random Forest, AdaBoost, and Gradient Boosting.
+X = data_x.drop(['company','job','degree'],axis='columns')
+print(X.head())
 
-- sklearn.experimental: 
-    Experimental features that are not yet stable.
+#    x_company  x_job  x_degree
+# 0          2      2         0
+# 1          2      2         1
+# 2          2      0         0
+# 3          2      0         1
+# 4          2      1         0
 
-- sklearn.feature_extraction: 
-    Feature extraction methods such as Bag-of-Words, Image features, and Text features.
+# Je pan name multiple time replate thay data ma to ene change kari ne 
+#  number ma convert kari devanu jemke ("Jay":0,"Salman":1,"Jetha":2)
+``` 
 
-- sklearn.feature_selection: 
-    Feature selection algorithms such as SelectKBest, SelectFromModel, and RFE.
 
-- sklearn.gaussian_process:
-    Gaussian Process models.
+## Confusion_matrix 
+- this is use for vesioultize how many time our model predict which number vs real number  
+```python
+from sklearn.metrics import confusion_matrix
+cm = confusion_matrix(y_test,y_predict)
 
-- sklearn.impute: 
-    Imputation of missing values.
+# good visiultion 
+import seaborn as sn
+plt.figure(figsize=(10,7))
+sn.heatmap(cm,annot=True)
+plt.xlabel("Predicted")
+plt.ylabel("Truth")
+plt.show()
+```
 
-- sklearn.inspection: 
-    Tools for model inspection and interpretation.
+## Save model in local storage 
 
-- sklearn.isotonic: 
-    Isotonic regression.
+- This is use where we dont need to again and again train our model
+- if me have milions of data then so much time contain to train if we try all test to train then so much time conume thats why save the train model then we use train data to fast execution 
+```python
+import joblib
+#  Import data in file 
+joblib.dump(model,'file_path')
 
-- sklearn.kernel_approximation: 
-    Approximate feature maps for kernel methods.
+# Export data from File 
 
-- sklearn.kernel_ridge: 
-    Kernel Ridge Regression.
+mj = joblib.load('file_path')
+```
 
-- sklearn.linear_model: 
-Linear models such as Linear Regression, Logistic Regression, and Ridge Regression.
+## Conver data in 0-1 Ranges 
+```python 
+from sklearn.preprocessing import MinMaxScaler
+mx = MinMaxScaler()
+mx.fit(df[['Income']])
+df['Income']=mx.transform(df[['Income']])
 
-- sklearn.manifold:
-    Manifold learning methods such as t-SNE, Isomap, and LLE.
+mx.fit(df[['Age']])
+df['Age']=mx.transform(df[['Age']])
 
-- sklearn.metrics: 
-    Metrics for evaluating model performance such as Accuracy, F1 score, and ROC-AUC.
-
-- sklearn.mixture: 
-    Gaussian Mixture Models and Bayesian Gaussian Mixture Models.
-
-- sklearn.model_selection: 
-    Tools for model selection and hyperparameter tuning such as Grid Search, Randomized Search, and Cross Validation.
-
-- sklearn.multiclass: 
-    Tools for multi-class classification.
-
-- sklearn.multioutput: 
-    Tools for multi-output regression and classification.
-
-- sklearn.naive_bayes: 
-    Naive Bayes classifiers.
-
-- sklearn.neighbors: 
-    Nearest Neighbors methods such as KNN and Radius Neighbors.
-
-- sklearn.neural_network: 
-Multi-layer Perceptron models.
-
-- sklearn.pipeline: 
-    Tools for building and evaluating machine learning pipelines.
-
-- sklearn.preprocessing: 
-    Preprocessing tools such as StandardScaler, MinMaxScaler, and LabelEncoder.
-
-- sklearn.random_projection: 
-    Random projection methods.
-
-- sklearn.semi_supervised: 
-    Semi-supervised learning methods.
-
-- sklearn.svm: 
-    Support Vector Machines and kernel methods.
-
-- sklearn.tree: 
-    Decision tree algorithms such as Classification and Regression Trees (CART), Random Forest, and Gradient Boosted Trees.
-
-- sklearn.utils: 
-    Utilities for machine learning such as Bunch, ShuffleSplit, and Resampling.
+# print(df.head())
+```
