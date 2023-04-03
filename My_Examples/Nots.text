@@ -1,0 +1,80 @@
+## LabelEncoder  For Covert Labeling into Numbers 
+
+ - User for labeling a datas like:
+ 
+```python
+
+#    company           job           degree   
+
+# 0  google      sales executive  bachelors                      
+# 1  google      sales executive    masters                      
+# 3  google     business manager    masters                     
+# 4  google  computer programmer  bachelors 
+
+
+
+from sklearn.preprocessing import LabelEncoder 
+
+x_company = LabelEncoder()
+x_job = LabelEncoder() 
+x_degree = LabelEncoder()
+
+data_x['x_company']=x_company.fit_transform(data_x['company'])
+data_x['x_job']=x_company.fit_transform(data_x['job'])
+data_x['x_degree']=x_company.fit_transform(data_x['degree'])
+
+X = data_x.drop(['company','job','degree'],axis='columns')
+print(X.head())
+
+#    x_company  x_job  x_degree
+# 0          2      2         0
+# 1          2      2         1
+# 2          2      0         0
+# 3          2      0         1
+# 4          2      1         0
+
+# Je pan name multiple time replate thay data ma to ene change kari ne 
+#  number ma convert kari devanu jemke ("Jay":0,"Salman":1,"Jetha":2)
+``` 
+
+
+## Confusion_matrix 
+- this is use for vesioultize how many time our model predict which number vs real number  
+```python
+from sklearn.metrics import confusion_matrix
+cm = confusion_matrix(y_test,y_predict)
+
+# good visiultion 
+import seaborn as sn
+plt.figure(figsize=(10,7))
+sn.heatmap(cm,annot=True)
+plt.xlabel("Predicted")
+plt.ylabel("Truth")
+plt.show()
+```
+
+## Save model in local storage 
+
+- This is use where we dont need to again and again train our model
+- if me have milions of data then so much time contain to train if we try all test to train then so much time conume thats why save the train model then we use train data to fast execution 
+```python
+import joblib
+#  Import data in file 
+joblib.dump(model,'file_path')
+
+# Export data from File 
+
+mj = joblib.load('file_path')
+```
+
+## Conver data in 0-1 Ranges 
+
+from sklearn.preprocessing import MinMaxScaler
+mx = MinMaxScaler()
+mx.fit(df[['Income']])
+df['Income']=mx.transform(df[['Income']])
+
+mx.fit(df[['Age']])
+df['Age']=mx.transform(df[['Age']])
+
+# print(df.head())

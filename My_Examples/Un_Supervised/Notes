@@ -1,0 +1,27 @@
+## what is Un supervised
+
+- Unsupervised learning models are utilized for three main tasks—clustering, association, and dimensionality reduction.
+
+## Clustering
+- Clustering is a data mining technique which groups unlabeled data based on their similarities or differences. 
+- Clustering algorithms are used to process raw, unclassified data objects into groups represented by structures or patterns in the information. 
+- Clustering algorithms can be categorized into a few types, specifically exclusive, overlapping, hierarchical, and probabilistic.
+
+## Association Rules
+- An association rule is a rule-based method for finding relationships between variables in a given dataset. 
+- These methods are frequently used for market basket analysis, allowing companies to better understand relationships between different products. 
+- Market basket roule 
+
+
+
+
+## All Algos 
+K-Means Clustering
+Hierarchical Clustering
+Principal Component Analysis (PCA)
+Independent Component Analysis (ICA)
+Non-negative Matrix Factorization (NMF)
+t-distributed Stochastic Neighbor Embedding (t-SNE)
+Spectral Clustering
+Gaussian Mixture Models (GMM)
+Local Outlier Factor (LOF)
