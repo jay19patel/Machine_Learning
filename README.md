@@ -123,3 +123,24 @@ df['Age']=mx.transform(df[['Age']])
 
 # print(df.head())
 ```
+## Conert each word into row NL word using NLTK
+```python
+
+
+# Netureal Langue function using NLTK 
+# Natural Language Toolkit
+#   normla to convert root word 
+# import nltk
+from nltk.stem.porter import PorterStemmer
+ps = PorterStemmer()
+
+def mynltk(text):
+    y = []
+    for i in text.split():
+        y.append(ps.stem(i))
+    return " ".join(y)
+
+# print(ps.stem('salmankhan'))
+my_df['mytags'] = my_df['mytags'].apply(mynltk)
+
+```
