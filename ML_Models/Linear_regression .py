@@ -12,8 +12,9 @@ reg = LinearRegression()
 # Fit the model to the input and output data
 reg.fit(X, y)
 
+num= int(input("Input : "))
 # Predict the output for a new input
-X_new = np.array([[1]])
+X_new = np.array([[num]])
 y_pred = reg.predict(X_new)
 
 # Print the predicted output
